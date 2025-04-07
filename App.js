@@ -1,20 +1,57 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
-export default function App() {
+import HomeScreen from './src/screens/HomeScreen';
+import CamaraScreen from './src/screens/CamaraScreen';
+import LocalizationScreen from './src/screens/LocalizationScreen';
+import MapScreen from './src/screens/MapScreen';
+import PlayAudioScreen from './src/screens/PlayAudioScreen';
+import PlayVideoScreen from './src/screens/PlayVideoScreen';
+
+const Drawer = createDrawerNavigator();
+
+function MyDrawer() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <Drawer.Navigator initialRouteName="HomeScreen">
+      <Drawer.Screen
+        name="HomeScreen"
+        component={HomeScreen}
+        options={{ drawerLabel: 'Home' }}
+      />
+      <Drawer.Screen
+        name="CamaraScreen"
+        component={CamaraScreen}
+        options={{ drawerLabel: 'Camara' }}
+      />
+      <Drawer.Screen
+        name="LocalizationScreen"
+        component={LocalizationScreen}
+        options={{ drawerLabel: 'Ubicación' }}
+      />
+      <Drawer.Screen
+        name="MapScreen"
+        component={MapScreen}
+        options={{ drawerLabel: 'Mapa' }}
+      />
+      <Drawer.Screen
+        name="PlayAudioScreen"
+        component={PlayAudioScreen}
+        options={{ drawerLabel: 'Reproducir Audio' }}
+      />
+      <Drawer.Screen
+        name="PlayVideoScreen"
+        component={PlayVideoScreen}
+        options={{ drawerLabel: 'Reproducir Video' }}
+      />
+    </Drawer.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default function App() {
+  
+  return (
+    <NavigationContainer>
+      <MyDrawer />
+    </NavigationContainer>
+  );
+};
